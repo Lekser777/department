@@ -7,8 +7,7 @@ import java.util.Date;
 public class Department {
     private String name;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date creation_date;
+    private String creation_date;
 
     private Integer id;
 
@@ -20,11 +19,11 @@ public class Department {
         this.name = name;
     }
 
-    public Date getCreation_date() {
+    public String getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(Date creation_date) {
+    public void setCreation_date(String creation_date) {
         this.creation_date = creation_date;
     }
 

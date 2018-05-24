@@ -7,10 +7,10 @@ public class Employee {
     private String first_name;
     private String last_name;
     private String patronymic;
-    private Date date_of_birth;
+    private String date_of_birth;
     private String email;
-    private Date hire_date;
-    private Date retire_date;
+    private String hire_date;
+    private String retire_date;
     private Integer salary;
     private Boolean is_boss;
     private Integer job_id;
@@ -48,11 +48,11 @@ public class Employee {
         this.patronymic = patronymic;
     }
 
-    public Date getDate_of_birth() {
+    public String getDate_of_birth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
+    public void setDate_of_birth(String date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 
@@ -64,19 +64,19 @@ public class Employee {
         this.email = email;
     }
 
-    public Date getHire_date() {
+    public String getHire_date() {
         return hire_date;
     }
 
-    public void setHire_date(Date hire_date) {
+    public void setHire_date(String hire_date) {
         this.hire_date = hire_date;
     }
 
-    public Date getRetire_date() {
+    public String getRetire_date() {
         return retire_date;
     }
 
-    public void setRetire_date(Date retire_date) {
+    public void setRetire_date(String retire_date) {
         this.retire_date = retire_date;
     }
 

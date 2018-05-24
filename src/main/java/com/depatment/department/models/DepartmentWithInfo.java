@@ -1,14 +1,10 @@
 package com.depatment.department.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
-
 public class DepartmentWithInfo {
     private String name;
-    private Date creation_date;
+    private String creation_date;
     private Integer id;
-    private String firstt_name;
+    private String first_name;
     private String last_name;
     private Integer count;
 
@@ -20,11 +16,11 @@ public class DepartmentWithInfo {
         this.name = name;
     }
 
-    public Date getCreation_date() {
+    public String getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(Date creation_date) {
+    public void setCreation_date(String creation_date) {
         this.creation_date = creation_date;
     }
 
@@ -36,12 +32,12 @@ public class DepartmentWithInfo {
         this.id = id;
     }
 
-    public String getFirstt_name() {
-        return firstt_name;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstt_name(String firstt_name) {
-        this.firstt_name = firstt_name;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
     public String getLast_name() {
