@@ -17,7 +17,7 @@ public class SalaryTask {
         this.departmentMapper = departmentMapper;
     }
 
-    @Scheduled(fixedRate = 30)
+    @Scheduled(fixedRate = 300000)
     public void reportSalaryFund() {
 
         try {
@@ -48,7 +48,6 @@ public class SalaryTask {
 
             }
         }catch (RuntimeException e){
-            //можно добавить логер
         }
     }
 }
