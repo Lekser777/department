@@ -1,9 +1,6 @@
 package com.depatment.department.mappers;
 
-import com.depatment.department.models.Department;
-import com.depatment.department.models.DepartmentWithInfo;
-import com.depatment.department.models.Departments_dependence;
-import com.depatment.department.models.SalaryFund;
+import com.depatment.department.models.*;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -61,19 +58,30 @@ public interface DepartmentMapper {
             "\"Department_of_employee\".\"Empl_id\"=\"Employee\".\"Id\"")
     SalaryFund findFundByid(@Param("id") int id);
 
+    @Select("select * from \"SalaryFunds\"")
+    List<SalaryFunds> findAllSalFunds();
+
 
     @Insert("INSERT INTO \"Department\"(\"Id\",\"Name\",\"Creation_date\") VALUES (DEFAULT,#{name} ,to_date(#{creation_date},'YYYY-MM-DD'))")
     void insertDepartment(Department department);
     @Insert("INSERT INTO \"Departments_dependence\"(\"Main_dep_id\",\"Linked_to_dep_id\") VALUES (#{main_dep_id},(select currval('\"Department_Id_seq\"')));")
     void insertDepartment_dep(Departments_dependence departments_dependence);
 
-
+    @Insert("insert into \"SalaryFunds\" (\"Id\",\"Dep_id\",\"Salary_of_dep\") values(DEFAULT,#{dep_id},(select sum(\"Salary\") \n" +
+            "from \"Department_of_employee\",\"Employee\" \n" +
+            "where \"Department_of_employee\".\"Dep_id\"=#{dep_id} \n" +
+            "and\n" +
+            "\"Department_of_employee\".\"Empl_id\"=\"Employee\".\"Id\"))")
+    void insertSalaryFund(SalaryFunds salaryFunds);
 
     @Update("update \"Department\" set \"Name\"=#{newname} where \"Name\"=#{curname}")
     void updateDepName(@Param("curname") String curname,@Param("newname") String newname);
 
     @Update("update \"Departments_dependence\" set \"Main_dep_id\"=#{linked_to_id} where \"Linked_to_dep_id\"=#{dep_id}")
     void updateDependency(@Param("dep_id") int depid,@Param("linked_to_id") int linkedid);
+
+    @Update("update \"SalaryFunds\" set \"Salary_of_dep\"=#{sal} where \"Dep_id\"=#{depid}")
+    void updateSalaryFunds(@Param("depid") int depid,@Param("sal") int salary);
 
 
     @Delete("Delete from \"Department\" where \"Name\"=#{name}")

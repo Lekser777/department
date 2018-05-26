@@ -1,19 +1,12 @@
 package com.depatment.department.controllers;
 
 import com.depatment.department.mappers.EmployeeMapper;
-import com.depatment.department.models.Department;
 import com.depatment.department.models.Department_of_employee;
-import com.depatment.department.models.Departments_dependence;
 import com.depatment.department.models.Employee;
 import com.depatment.department.validator.DateValidator;
 import com.depatment.department.validator.EmployeeValidator;
-import org.apache.ibatis.session.SqlSessionException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -67,9 +60,7 @@ public class EmployeeController {
     @PostMapping("/add")
     public String addEmployee(@RequestBody Employee employee,@RequestParam("depid") int depid){
 
-        String mes="";
-
-        mes=employeeValidator.IsEmployeeValid(depid,employee.getFirst_name(),employee.getLast_name(),employee.getPatronymic(),
+        String mes=employeeValidator.IsEmployeeValid(depid,employee.getFirst_name(),employee.getLast_name(),employee.getPatronymic(),
                 employee.getDate_of_birth(),employee.getHire_date(),employee.getEmail()
                 ,employee.getSalary().toString(),employee.getPhone_number(),employee.getIs_boss());
         if(mes.equals("OK")) {
@@ -140,9 +131,7 @@ public class EmployeeController {
     @PutMapping("/update")
     public String updateEmployee(@RequestParam("id") int id,@RequestBody Employee employee){
 
-        String mess="Информация о сотруднике успешно обновлена";
-
-        mess=employeeValidator.IsEmployeeValid(employee.getFirst_name(),employee.getLast_name(),employee.getPatronymic(),
+        String mess=employeeValidator.IsEmployeeValid(employee.getFirst_name(),employee.getLast_name(),employee.getPatronymic(),
                 employee.getDate_of_birth(),employee.getHire_date(),employee.getEmail()
                 ,employee.getSalary().toString(),employee.getPhone_number(),employee.getIs_boss(),id);
         if(mess.equals("OK")) {

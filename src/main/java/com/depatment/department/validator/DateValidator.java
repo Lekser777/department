@@ -21,11 +21,7 @@ public class DateValidator {
         DateFormat format =new SimpleDateFormat("yyyy-MM-dd");
         try{Date firstdate=format.parse(first);
             Date seconddated=format.parse(second);
-            if(firstdate.getTime()>seconddated.getTime()){
-                return true;
-            }else {
-                return false;
-            }
+            return firstdate.getTime() > seconddated.getTime();
         }catch (ParseException e){
             System.out.println("ParseExeption while checking hdate validation");
             return false;

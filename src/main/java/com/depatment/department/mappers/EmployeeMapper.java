@@ -5,7 +5,6 @@ import com.depatment.department.models.Employee;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -59,9 +58,6 @@ public interface EmployeeMapper {
 
     @Select("select \"Date_of_birth\" from \"Employee\" where \"Id\"=#{id}")
     String findDob(@Param("id") int id);
-
-    @Select("select nextval('\"Employee_Id_seq\"')")
-    Integer nextId();
 
     @Select("select \"Employee\".\"Id\"\n" +
             "from \"Department_of_employee\",\"Employee\" \n" +
