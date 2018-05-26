@@ -1,0 +1,64 @@
+CREATE OR REPLACE FUNCTION public.add_to_log()
+  RETURNS trigger AS
+$BODY$
+DECLARE
+    mstr varchar(50);
+    astr bigint;
+BEGIN
+    IF    TG_OP = 'INSERT' THEN
+	astr=NEW."Id";
+        mstr := 'New department added ';
+        INSERT INTO "Department_logger" ("Dep_id","Action") values (astr,mstr);
+        RETURN NEW;
+    ELSIF TG_OP = 'UPDATE' THEN
+	astr=NEW."Id";
+	mstr := 'Department name is changed ';
+        INSERT INTO "Department_logger" ("Dep_id","Action") values (astr,mstr);
+        RETURN NEW;
+    ELSIF TG_OP = 'DELETE' THEN
+	astr=OLD."Id";
+        mstr := 'Department is removed ';
+        INSERT INTO "Department_logger" ("Dep_id","Action") values (astr,mstr);
+        RETURN OLD;
+    END IF;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION public.add_to_log()
+  OWNER TO postgres;
+
+
+
+CREATE OR REPLACE FUNCTION public.add_to_log2()
+  RETURNS trigger AS
+$BODY$
+DECLARE
+    mstr varchar(50);
+    astr bigint;
+BEGIN
+	astr=NEW."Linked_to_dep_id";
+	mstr := 'Department is transfered ';
+        INSERT INTO "Department_logger" ("Dep_id","Action") values (astr,mstr);
+        RETURN NEW;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION public.add_to_log2()
+  OWNER TO postgres;
+
+
+CREATE TRIGGER t_dep
+  AFTER INSERT OR UPDATE OR DELETE
+  ON public."Department"
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.add_to_log();
+
+CREATE TRIGGER t_dep_dependence
+  AFTER UPDATE
+  ON public."Departments_dependence"
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.add_to_log2();
+
+
