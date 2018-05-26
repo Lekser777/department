@@ -55,7 +55,8 @@ public interface DepartmentMapper {
             "from \"Department_of_employee\",\"Employee\" \n" +
             "where \"Department_of_employee\".\"Dep_id\"=#{id} \n" +
             "and\n" +
-            "\"Department_of_employee\".\"Empl_id\"=\"Employee\".\"Id\"")
+            "\"Department_of_employee\".\"Empl_id\"=\"Employee\".\"Id\"" +
+            "and \"Employee\".\"Retire_date\" IS  NULL")
     SalaryFund findFundByid(@Param("id") int id);
 
     @Select("select * from \"SalaryFunds\"")
@@ -70,8 +71,8 @@ public interface DepartmentMapper {
     @Insert("insert into \"SalaryFunds\" (\"Id\",\"Dep_id\",\"Salary_of_dep\") values(DEFAULT,#{dep_id},(select sum(\"Salary\") \n" +
             "from \"Department_of_employee\",\"Employee\" \n" +
             "where \"Department_of_employee\".\"Dep_id\"=#{dep_id} \n" +
-            "and\n" +
-            "\"Department_of_employee\".\"Empl_id\"=\"Employee\".\"Id\"))")
+            "and \"Department_of_employee\".\"Empl_id\"=\"Employee\".\"Id\" " +
+            "and \"Employee\".\"Retire_date\" IS  NULL))")
     void insertSalaryFund(SalaryFunds salaryFunds);
 
     @Update("update \"Department\" set \"Name\"=#{newname} where \"Name\"=#{curname}")
@@ -80,8 +81,11 @@ public interface DepartmentMapper {
     @Update("update \"Departments_dependence\" set \"Main_dep_id\"=#{linked_to_id} where \"Linked_to_dep_id\"=#{dep_id}")
     void updateDependency(@Param("dep_id") int depid,@Param("linked_to_id") int linkedid);
 
-    @Update("update \"SalaryFunds\" set \"Salary_of_dep\"=#{sal} where \"Dep_id\"=#{depid}")
-    void updateSalaryFunds(@Param("depid") int depid,@Param("sal") int salary);
+    @Update("update \"SalaryFunds\" set \"Salary_of_dep\"=(select sum(\"Salary\") " +
+            "from \"Department_of_employee\",\"Employee\" " +
+            "where \"Department_of_employee\".\"Dep_id\"=#{depid} \n" +
+            "and \"Department_of_employee\".\"Empl_id\"=\"Employee\".\"Id\" and \"Employee\".\"Retire_date\" IS  NULL) where \"Dep_id\"=#{depid}")
+    void updateSalaryFunds(@Param("depid") int depid);
 
 
     @Delete("Delete from \"Department\" where \"Name\"=#{name}")

@@ -1,0 +1,76 @@
+INSERT INTO "Department"("Id","Name","Creation_date") VALUES (DEFAULT,'Security' ,to_date('2010-01-01'},'YYYY-MM-DD'))
+INSERT INTO "Department"("Id","Name","Creation_date") VALUES (DEFAULT,'Managment' ,to_date('2010-01-01'},'YYYY-MM-DD'))
+INSERT INTO "Department"("Id","Name","Creation_date") VALUES (DEFAULT,'Main' ,to_date('2010-01-01'},'YYYY-MM-DD'))
+
+INSERT INTO "Departments_dependence"("Main_dep_id","Linked_to_dep_id") VALUES (3,2))
+INSERT INTO "Departments_dependence"("Main_dep_id","Linked_to_dep_id") VALUES (2,1))
+
+INSERT INTO public."Employee"(
+            "Id", "First_name", "Last_name", "Date_of_birth",
+            "Email", "Hire_date","Salary", "Is_boss", "Job_id",
+            "Phone_number")
+    VALUES (DEFAULT, Иван, Иванов, 1999-01-01, ivanov@mail.ru,2015-01-01,50000,true,1,8 927 111 11 11);
+
+INSERT INTO public."Employee"(
+            "Id", "First_name", "Last_name", "Date_of_birth",
+            "Email", "Hire_date","Salary", "Is_boss", "Job_id",
+            "Phone_number")
+    VALUES (DEFAULT, Василий, Иванов, 1999-01-02, vasivanov@mail.ru,2015-01-01,30000,false,2,8 927 111 12 11);
+
+INSERT INTO public."Employee"(
+            "Id", "First_name", "Last_name", "Date_of_birth",
+            "Email", "Hire_date","Salary", "Is_boss", "Job_id",
+            "Phone_number")
+    VALUES (DEFAULT, Петр, Петров, 1999-01-02, petrov@mail.ru,2015-01-01,100000,true,3,8 927 111 12 12);
+
+    INSERT INTO public."Employee"(
+                "Id", "First_name", "Last_name", "Date_of_birth",
+                "Email", "Hire_date","Salary", "Is_boss", "Job_id",
+                "Phone_number")
+        VALUES (DEFAULT, Петр, Васильев, 1999-01-02, vasilev@mail.ru,2015-01-01,800000,false,4,8 927 111 12 13);
+
+INSERT INTO public."Employee"(
+            "Id", "First_name", "Last_name", "Date_of_birth",
+            "Email", "Hire_date","Salary", "Is_boss", "Job_id",
+            "Phone_number")
+    VALUES (DEFAULT, Мария, Перова, 1999-01-02, petrov@mail.ru,2015-01-01,60000,true,5,8 927 121 12 12);
+
+INSERT INTO public."Employee"(
+            "Id", "First_name", "Last_name", "Date_of_birth",
+            "Email", "Hire_date","Salary", "Is_boss", "Job_id",
+            "Phone_number")
+    VALUES (DEFAULT, Василиса, Марьева, 1999-01-02, petrov@mail.ru,2015-01-01,30000,false,6,8 927 131 12 12);
+
+
+insert into "Department_of_employee" ("Dep_id","Empl_id")
+            values(1,1)
+insert into "Department_of_employee" ("Dep_id","Empl_id")
+                        values(1,2)
+insert into "Department_of_employee" ("Dep_id","Empl_id")
+            values(2,5)
+insert into "Department_of_employee" ("Dep_id","Empl_id")
+                        values(2,6)
+insert into "Department_of_employee" ("Dep_id","Empl_id")
+                        values(3,3)
+
+insert into "Department_of_employee" ("Dep_id","Empl_id")
+                         values(3,4)
+
+INSERT INTO public."Jobs"(
+            "Id", "Job_name")
+    VALUES (default, 'security_guard');
+INSERT INTO public."Jobs"(
+            "Id", "Job_name")
+    VALUES (default, 'head_of_security');
+INSERT INTO public."Jobs"(
+            "Id", "Job_name")
+    VALUES (default, 'head_of_company');
+INSERT INTO public."Jobs"(
+            "Id", "Job_name")
+    VALUES (default, 'deputy_head');
+INSERT INTO public."Jobs"(
+            "Id", "Job_name")
+    VALUES (default, 'accountant');
+INSERT INTO public."Jobs"(
+            "Id", "Job_name")
+    VALUES (default, 'deputy_accountant');

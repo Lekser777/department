@@ -23,7 +23,7 @@ public interface EmployeeMapper {
     @Select("select * from \"Employee\" where \"Id\"=#{id}")
     Employee findEmpById(@Param("id") int id);
 
-    @Select("select \"First_name\",\"Last_name\"\n" +
+    @Select("select \"First_name\",\"Last_name\",\"Patronymic\",\"Email\",\"Date_of_birth\",\"Hire_date\",\"Salary\",\"Phone_number\"\n" +
             "from \"Department_of_employee\",\"Employee\" \n" +
             "where \"Dep_id\"=(select \"Dep_id\" from \"Department_of_employee\" where \"Empl_id\"=#{id} )\n" +
             "and\n" +

@@ -1,0 +1,62 @@
+CREATE SEQUENCE public."Department_Id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public."Department_Id_seq"
+  OWNER TO postgres;
+
+CREATE SEQUENCE public."Department_of_employee_Id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public."Department_of_employee_Id_seq"
+  OWNER TO postgres;
+
+CREATE SEQUENCE public."Departments_dependence_Id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public."Departments_dependence_Id_seq"
+  OWNER TO postgres;
+
+CREATE SEQUENCE public."Employee_Id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public."Employee_Id_seq"
+  OWNER TO postgres;
+
+CREATE SEQUENCE public."Jobs_Id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public."Jobs_Id_seq"
+  OWNER TO postgres;
+
+CREATE SEQUENCE public."SalaryFunds_Id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public."SalaryFunds_Id_seq"
+  OWNER TO postgres;
+
+CREATE SEQUENCE public."Department_logger_Id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public."Department_logger_Id_seq"
+  OWNER TO postgres;
