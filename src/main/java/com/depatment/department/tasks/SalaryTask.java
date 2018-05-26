@@ -17,7 +17,7 @@ public class SalaryTask {
         this.departmentMapper = departmentMapper;
     }
 
-    @Scheduled(fixedRate = 30)
+    @Scheduled(fixedRate = 300000)
     public void reportSalaryFund() {
 
         try {
@@ -31,15 +31,15 @@ public class SalaryTask {
                     departmentMapper.insertSalaryFund(salaryFunds);
                 }
             } else {
-                for (int it = 0; it < all.size(); it++) {
+                for (int i = 0; i < all.size(); i++) {
                     for (int ii = 0; ii < allsf.size(); ii++) {
-                        if (all.get(it).getId().equals(allsf.get(ii).getDep_id())) {
-                            departmentMapper.updateSalaryFunds(allsf.get(ii).getDep_id());
+                        if (all.get(i).getId().equals(allsf.get(ii).getDep_id())) {
+                            departmentMapper.updateSalaryFunds(allsf.get(ii).getId(), departmentMapper.findFundByid(all.get(i).getId()).getSum());
                             isUpdated = true;
                         }
                     }
                     if (!isUpdated) {
-                        salaryFunds.setDep_id(all.get(it).getId());
+                        salaryFunds.setDep_id(all.get(i).getId());
                         departmentMapper.insertSalaryFund(salaryFunds);
                     }
                     isUpdated = false;

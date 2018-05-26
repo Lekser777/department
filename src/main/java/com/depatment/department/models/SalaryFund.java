@@ -1,4 +1,5 @@
 package com.depatment.department.models;
+
 public class SalaryFund {
     private Integer sum;
 
